@@ -14,7 +14,7 @@ from Cython.Compiler import Options
 Options.docstrings = True
 
 
-PACKAGES = find_packages()
+PACKAGES = find_packages(include=["thinc", "thinc.*"])
 MOD_NAMES = [
     "thinc.backends.cblas",
     "thinc.backends.linalg",
@@ -84,7 +84,7 @@ def setup_package():
         ext_modules.append(ext)
     print("Cythonizing sources")
     ext_modules = cythonize(
-        ext_modules, compiler_directives=COMPILER_DIRECTIVES, language_level=2
+        ext_modules, compiler_directives=COMPILER_DIRECTIVES, language_level=3
     )
 
     setup(
